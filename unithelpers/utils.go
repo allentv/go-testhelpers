@@ -1,16 +1,16 @@
 package unithelpers
 
 import (
-	"fmt"
 	"io/ioutil"
+	"path/filepath"
 )
 
 // LoadData reads the test data file under `testdata` folder
 func (h *TestHelper) LoadData(filename string) string {
-	h.Helper()
-	data, err := ioutil.ReadFile(fmt.Sprintf("testdata/%v", filename))
+	h.helper()
+	data, err := ioutil.ReadFile(filepath.Join(h.TestDataFolder, filename))
 	if err != nil {
-		h.Fatal(err)
+		h.fatal(err)
 	}
 	return string(data)
 }
